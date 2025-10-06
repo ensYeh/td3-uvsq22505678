@@ -71,5 +71,29 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.3.1</version>
+            <executions>
+                <execution>
+                    <id>checkstyle-validation</id>
+                    <phase>validate</phase> <!-- vérification à la phase verify -->
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <!-- Utiliser les règles Google -->
+                <configLocation>https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml</configLocation>
+                <encoding>UTF-8</encoding>
+                <consoleOutput>true</consoleOutput>
+                <failOnViolation>true</failOnViolation>
+            </configuration>
+        </plugin>
+    </plugins>
   </build>
 </project>
