@@ -1,0 +1,27 @@
+package fr.uvsq.cprog.collex;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class AdresseIPTest {
+
+    @Test
+    public void isValidIPTest(){
+        String ip = "193.51.31.90";
+        assertTrue(AdresseIP.isValidIP(ip));
+    }
+
+    @Test
+    public void isValidIPTest2(){
+        String ip = "193.51.av.122";
+        assertFalse(AdresseIP.isValidIP(ip));
+    }
+    
+    @Test
+    public void ExceptionTest(){
+        assertThrows(IllegalArgumentException.class, () -> new AdresseIP("193.51.qqq.90"));
+        assertThrows(IllegalArgumentException.class, () -> new AdresseIP("193.5"));
+        assertThrows(IllegalArgumentException.class, () -> new AdresseIP("255.51.0.256"));
+        assertThrows(IllegalArgumentException.class, () -> new AdresseIP("193/51/0/90"));
+    }
+}
