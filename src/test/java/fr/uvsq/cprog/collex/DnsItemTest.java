@@ -21,6 +21,6 @@ public class DnsItemTest {
 
     @Test
     public void toStringTest(){
-        assertEquals(ip.toString()+" "+machine.toString(), dnsItem.toString());
+        assertEquals(machine.toString()+" "+ip.toString(), dnsItem.toString());
     }
 }

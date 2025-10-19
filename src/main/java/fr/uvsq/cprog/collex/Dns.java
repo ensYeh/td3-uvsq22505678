@@ -45,8 +45,8 @@ public class Dns {
         for (String ligne : lignes) {
             String[] parts = ligne.trim().split("\\s+");
             if (parts.length == 2) {
-                String nom = parts[1];
-                String ip = parts[0];
+                String nom = parts[0];
+                String ip = parts[1];
                 DnsItem item = new DnsItem(new NomMachine(nom), new AdresseIP(ip));
                 items.add(item);
             }
@@ -102,7 +102,7 @@ public class Dns {
     private void sauvegarder() throws IOException {
         List<String> lignes = new ArrayList<>();
         for (DnsItem item : items) {
-            lignes.add(item.getAdresseIP()+ " "+ item.getNomMachine());
+            lignes.add(item.getNomMachine()+ " "+item.getAdresseIP() );
         }
         Files.write(filePath, lignes);
     }
@@ -112,7 +112,7 @@ public class Dns {
         List<String> lignes = new ArrayList<>();
         items.removeLast();
         for (DnsItem item : items) {
-            lignes.add(item.getAdresseIP()+ " "+ item.getNomMachine());
+            lignes.add(item.getNomMachine()+ " "+item.getAdresseIP());
         }
         Files.write(filePath, lignes);
 
