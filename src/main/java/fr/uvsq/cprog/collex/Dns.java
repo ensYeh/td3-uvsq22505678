@@ -39,7 +39,33 @@ public class Dns {
         }
     }
 
-    
+    //Ce constructeur prend en compte l'environnement de test
+    public Dns(String scope) throws IOException{
+        Properties props = new Properties();
+        try (var fis = Files.newInputStream(Path.of("config.properties"))) {
+            props.load(fis);
+        }
+
+        String dnsFile = props.getProperty("dnsTest.file");
+        if (dnsFile == null) {
+            throw new RuntimeException("Propriété 'dnsTest.file' manquante dans config.properties");
+        }
+        this.filePath = Path.of(dnsFile);
+
+        
+        List<String> lignes = Files.readAllLines(filePath);
+
+        
+        for (String ligne : lignes) {
+            String[] parts = ligne.trim().split("\\s+");
+            if (parts.length == 2) {
+                String nom = parts[0];
+                String ip = parts[1];
+                DnsItem item = new DnsItem(new NomMachine(nom), new AdresseIP(ip));
+                items.add(item);
+            }
+        }
+    }
 
 
     
