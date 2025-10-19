@@ -31,4 +31,21 @@ public class AdresseIPTest {
         AdresseIP adr= new AdresseIP(ip);
         assertEquals(ip,adr.toString());
     }
+
+    @Test
+    public void equalsTrueTest(){
+        String ip = "193.51.31.90";
+        AdresseIP adr= new AdresseIP(ip);
+        AdresseIP adr2= new AdresseIP(ip);
+        assertTrue(adr.equals(adr2));
+    }
+
+    @Test
+    public void equalsFalseTest(){
+        String ip = "193.51.31.90";
+        AdresseIP adr= new AdresseIP(ip);
+        String ip2 = "193.51.31.67";
+        AdresseIP adr2= new AdresseIP(ip2);
+        assertFalse(adr.equals(adr2));
+    }
 }

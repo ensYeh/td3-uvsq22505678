@@ -18,6 +18,14 @@ public class AdresseIP {
         return adresseIp;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof AdresseIP)) return false;
+        AdresseIP other = (AdresseIP) obj;
+        return this.adresseIp.equals(other.adresseIp);
+    }
+
     public static Boolean isValidIP(String ip){
         String[] parts = ip.split("\\.");
         if (parts.length != 4) return false;
