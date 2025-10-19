@@ -52,6 +52,16 @@ public class Dns {
     }
 
 
+    public DnsItem getItem(NomMachine machine) {
+        for (DnsItem item : items) {
+            if (item.getNomMachine().equals(machine)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    
     
 
     
