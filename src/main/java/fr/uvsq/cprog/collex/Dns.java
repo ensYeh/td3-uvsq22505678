@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class Dns {
     private List<DnsItem> items = new ArrayList<>();
@@ -70,7 +72,12 @@ public class Dns {
         return null;
     }
 
-    
+    public List<DnsItem> getItems(String domaine){
+        return items.stream()
+                .filter(i -> i.getNomMachine().getDomaine().equals(domaine))
+                .sorted(Comparator.comparing(i -> i.getNomMachine().getNom()))
+                .toList();
+    }
     
 
     

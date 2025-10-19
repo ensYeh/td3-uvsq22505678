@@ -1,6 +1,9 @@
 package fr.uvsq.cprog.collex;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -56,6 +59,61 @@ public class DnsTest {
             e.printStackTrace();
         } 
     }
+
+    @Test
+    public void getItemsTest(){
+        
+        DnsItem[] items= {
+            new DnsItem(new NomMachine("ecampus.uvsq.fr"),new AdresseIP("193.51.25.12")),
+            new DnsItem(new NomMachine("pikachu.uvsq.fr"),new AdresseIP("193.51.25.24")),
+            new DnsItem(new NomMachine("poste.uvsq.fr"),new AdresseIP("193.51.31.154") ),
+            new DnsItem(machineExistant, ipExistant)
+        };
+        List<DnsItem> itemForUVSQFR= new ArrayList<>();
+        for (DnsItem item : items) {
+            itemForUVSQFR.add(item);
+        }
+        try {
+            dns= new Dns(scope);
+            assertEquals(itemForUVSQFR.toString(), dns.getItems("uvsq.fr").toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+
+     @Test
+    public void getItemsBadOrderTest(){
+        
+        DnsItem[] items= {
+            new DnsItem(machineExistant, ipExistant),
+            new DnsItem(new NomMachine("ecampus.uvsq.fr"),new AdresseIP("193.51.25.12")),
+            new DnsItem(new NomMachine("pikachu.uvsq.fr"),new AdresseIP("193.51.25.24")),
+            new DnsItem(new NomMachine("poste.uvsq.fr"),new AdresseIP("193.51.31.154") )
+            
+        };
+        List<DnsItem> itemForUVSQFR= new ArrayList<>();
+        for (DnsItem item : items) {
+            itemForUVSQFR.add(item);
+        }
+        try {
+            dns= new Dns(scope);
+            assertNotEquals(itemForUVSQFR.toString(), dns.getItems("uvsq.fr").toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+
+    @Test
+    public void getItemsInexistantDomainTest(){
+        List<DnsItem> itemForUVSQFR= new ArrayList<>();
+        try {
+            dns= new Dns(scope);
+            assertEquals(itemForUVSQFR, dns.getItems("uvsq.com"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+
 
 
 }
