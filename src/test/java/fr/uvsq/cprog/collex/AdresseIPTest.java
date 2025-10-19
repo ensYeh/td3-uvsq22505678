@@ -24,4 +24,11 @@ public class AdresseIPTest {
         assertThrows(IllegalArgumentException.class, () -> new AdresseIP("255.51.0.256"));
         assertThrows(IllegalArgumentException.class, () -> new AdresseIP("193/51/0/90"));
     }
+
+    @Test
+    public void toStringTest(){
+        String ip = "193.51.31.90";
+        AdresseIP adr= new AdresseIP(ip);
+        assertEquals(ip,adr.toString());
+    }
 }

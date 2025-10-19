@@ -2,15 +2,20 @@ package fr.uvsq.cprog.collex;
 
 public class AdresseIP {
 
-    private String addresseIp;
+    private String adresseIp;
 
     public AdresseIP(String ip){
         if(!isValidIP(ip)) throw new IllegalArgumentException("Adresse IP Invalide : "+ip);
-        addresseIp=ip;
+        adresseIp=ip;
     }
 
     public String getAddresseIp() {
-        return addresseIp;
+        return adresseIp;
+    }
+
+    @Override
+    public String toString() {
+        return adresseIp;
     }
 
     public static Boolean isValidIP(String ip){
