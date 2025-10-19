@@ -43,8 +43,8 @@ public class Dns {
         for (String ligne : lignes) {
             String[] parts = ligne.trim().split("\\s+");
             if (parts.length == 2) {
-                String nom = parts[0];
-                String ip = parts[1];
+                String nom = parts[1];
+                String ip = parts[0];
                 DnsItem item = new DnsItem(new NomMachine(nom), new AdresseIP(ip));
                 items.add(item);
             }
@@ -55,6 +55,15 @@ public class Dns {
     public DnsItem getItem(NomMachine machine) {
         for (DnsItem item : items) {
             if (item.getNomMachine().equals(machine)) {
+                return item;
+            }
+        }
+        return null;
+    }
+    
+    public DnsItem getItem(AdresseIP ip) {
+        for (DnsItem item : items) {
+            if (item.getAdresseIP().equals(ip)) {
                 return item;
             }
         }
