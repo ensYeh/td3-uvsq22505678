@@ -78,6 +78,45 @@ public class Dns {
                 .sorted(Comparator.comparing(i -> i.getNomMachine().getNom()))
                 .toList();
     }
+
+
+    public void addItem(AdresseIP ip, NomMachine nom) throws IOException {
+
+        if (getItem(ip) != null) {
+            throw new IllegalArgumentException("ERREUR : L’adresse IP existe déjà !");
+        }
+
+        if (getItem(nom) != null) {
+            throw new IllegalArgumentException("ERREUR : Le nom de machine existe déjà !");
+        }
+
+        DnsItem newItem = new DnsItem(nom, ip);
+        items.add(newItem);
+
+        // Sauvegarder dans le fichier
+        sauvegarder();
+
+
+    }
+
+    private void sauvegarder() throws IOException {
+        List<String> lignes = new ArrayList<>();
+        for (DnsItem item : items) {
+            lignes.add(item.getAdresseIP()+ " "+ item.getNomMachine());
+        }
+        Files.write(filePath, lignes);
+    }
+
+    public void deleteLastItem() throws IOException{
+        //Pour pouvoir tester la méthode addItem
+        List<String> lignes = new ArrayList<>();
+        items.removeLast();
+        for (DnsItem item : items) {
+            lignes.add(item.getAdresseIP()+ " "+ item.getNomMachine());
+        }
+        Files.write(filePath, lignes);
+
+    }
     
 
     

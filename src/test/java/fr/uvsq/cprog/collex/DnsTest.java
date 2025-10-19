@@ -114,6 +114,35 @@ public class DnsTest {
         } 
     }
 
+    @Test
+    public void addItemTest(){
+
+        //Je teste l'ajout avec la suppression
+        try {
+            dns= new Dns(scope);
+            dns.addItem(new AdresseIP("0.0.0.0"), new NomMachine("test.uvsq.fr"));
+            assertEquals("0.0.0.0 test.uvsq.fr", dns.getItem(new AdresseIP("0.0.0.0")).toString());
+            dns.deleteLastItem();
+            assertEquals(null, dns.getItem(new AdresseIP("0.0.0.0")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void AddItemExceptionTest(){
+        try {
+            dns= new Dns(scope);
+            assertThrows(IllegalArgumentException.class, () -> dns.addItem(ipExistant, machineExistant));
+            assertThrows(IllegalArgumentException.class, () -> dns.addItem(ipExistant, machineNonExistant));
+            assertThrows(IllegalArgumentException.class, () -> dns.addItem(ipNonExistant, machineExistant));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        
+    }
+
 
 
 }
