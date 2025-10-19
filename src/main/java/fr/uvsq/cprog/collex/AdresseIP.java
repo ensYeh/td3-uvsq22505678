@@ -44,5 +44,4 @@ public class AdresseIP {
         }
         return true;
     }
-    
 }
