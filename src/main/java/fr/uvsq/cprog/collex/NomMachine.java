@@ -6,13 +6,19 @@ public class NomMachine {
     private String domaine;
 
     public NomMachine(String nomComplet) {
-        if (!nomComplet.contains(".")) {
+        if (!isValidNomMachine(nomComplet)) {
             throw new IllegalArgumentException("Nom de machine invalide : " + nomComplet);
         }
         this.nomComplet = nomComplet;
         String[] parts = nomComplet.split("\\.", 2);
         this.nom = parts[0];
         this.domaine = parts[1];
+    }
+
+    public static boolean isValidNomMachine(String nomComplet){
+        String[] parts = nomComplet.split("\\.");
+        if (parts.length != 3) return false;
+        return true;
     }
     
     public String getNomComplet() {

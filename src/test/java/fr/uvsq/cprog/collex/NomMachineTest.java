@@ -10,7 +10,8 @@ public class NomMachineTest {
     @Test
     public void ExceptionTest(){
         assertThrows(IllegalArgumentException.class, () -> new NomMachine("wwwfuzfubnzuinfze"));
-    }
+        assertThrows(IllegalArgumentException.class, () -> new NomMachine("wwwfuz.fubnzuinfze"));
+    }   
 
     @Test
     public void getNomCompletTest(){
