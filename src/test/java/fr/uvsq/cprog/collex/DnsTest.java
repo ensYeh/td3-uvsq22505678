@@ -121,7 +121,7 @@ public class DnsTest {
         try {
             dns= new Dns(scope);
             dns.addItem(new AdresseIP("0.0.0.0"), new NomMachine("test.uvsq.fr"));
-            assertEquals("0.0.0.0 test.uvsq.fr", dns.getItem(new AdresseIP("0.0.0.0")).toString());
+            assertEquals("test.uvsq.fr 0.0.0.0", dns.getItem(new AdresseIP("0.0.0.0")).toString());
             dns.deleteLastItem();
             assertEquals(null, dns.getItem(new AdresseIP("0.0.0.0")));
         } catch (IOException e) {
