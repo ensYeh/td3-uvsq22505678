@@ -15,4 +15,20 @@ public class NomMachine {
         this.domaine = parts[1];
     }
     
+    public String getNomComplet() {
+        return nomComplet;
+    }
+
+    public String getNom(){
+        return nom;
+    }
+
+    public String getDomaine(){
+        return domaine;
+    }
+
+    @Override
+    public String toString(){
+        return nomComplet;
+    }
 }
