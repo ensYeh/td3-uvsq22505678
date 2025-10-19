@@ -31,4 +31,17 @@ public class NomMachine {
     public String toString(){
         return nomComplet;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof NomMachine)) return false;
+        NomMachine other = (NomMachine) obj;
+        return this.nomComplet.equals(other.nomComplet);
+    }
+
+    @Override
+    public int hashCode() {
+        return nomComplet.hashCode();
+    }
 }

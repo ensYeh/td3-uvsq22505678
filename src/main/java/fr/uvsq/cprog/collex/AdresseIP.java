@@ -26,6 +26,11 @@ public class AdresseIP {
         return this.adresseIp.equals(other.adresseIp);
     }
 
+    @Override
+    public int hashCode() {
+        return adresseIp.hashCode();
+    }
+
     public static Boolean isValidIP(String ip){
         String[] parts = ip.split("\\.");
         if (parts.length != 4) return false;
